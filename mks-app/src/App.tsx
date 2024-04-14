@@ -1,29 +1,19 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import ProductCard from "./components/Product";
+
 function App() {
 
   return (
     <>
-      <header>
-        <h1>MSK</h1>
-        <h2>Sistemas</h2>
-        <div>
-        <button>carrinho</button>
-        </div>
-      </header>
+      <Header />
       <section>
-        <div>
-          <img src="" alt="" />
-          <h3>titulo</h3>
-          <span>price</span>
-          <p>descrição</p>
-          <button>Comprar</button>
-        </div>
+        <ProductCard />
       </section>
       <section>
         <h3>carrinho</h3>
       </section>
-      <footer>
-        <span>MKS sistemas © Todos os direitos reservados</span>
-      </footer>
+      <Footer />
     </>
   )
 }
