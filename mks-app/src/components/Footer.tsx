@@ -1,8 +1,24 @@
+import styled from "styled-components";
+
+const FooterWrapper = styled.footer`
+  height: 34px;
+  width: 100vw;
+  background-color: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const FooterText = styled.span`
+text-align: center;`;
+
 function Footer() {
   return (
-    <footer>
-      <span>MKS sistemas © Todos os direitos reservados</span>
-    </footer>
+    <FooterWrapper>
+      <FooterText>
+        MKS Sistemas © Todos os direitos reservados
+      </FooterText>
+    </FooterWrapper>
   )
 }
 

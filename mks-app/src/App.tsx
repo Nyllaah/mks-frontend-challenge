@@ -4,6 +4,16 @@ import Header from "./components/Header";
 import ProductCard from "./components/Product";
 import { IProduct } from "./Interfaces";
 import getProducts from "./API";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+  }
+`;
 
 function App() {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
@@ -20,6 +30,7 @@ function App() {
   if (isSuccess) {
     return (
       <>
+      <GlobalStyle />
         <Header />
         <section>
           {data.products.map(({id, name, brand, description, photo, price}: IProduct) => (
