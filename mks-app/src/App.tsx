@@ -3,14 +3,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ProductCard from "./components/Product";
 import { IProduct } from "./Interfaces";
-
-const getProducts = async () => {
-  const response = await fetch('https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=ASC')
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-  return response.json()
-}
+import getProducts from "./API";
 
 function App() {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
