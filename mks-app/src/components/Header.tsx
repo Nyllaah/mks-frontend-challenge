@@ -8,7 +8,7 @@ export default function Header() {
         <Subtitle>Sistemas</Subtitle>
       </TitleWrapper>
       <CartBtn onClick={() => {}}>
-        <img src="../../public/cart.svg" alt=""/>
+        <img src="../../public/cart.svg" alt="cart icon"/>
         <span>0</span>
       </CartBtn>
     </HeaderWrapper>

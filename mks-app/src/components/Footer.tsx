@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export default function Footer() {
+  return (
+    <FooterWrapper>
+      <FooterText>
+        MKS Sistemas © Todos os direitos reservados
+      </FooterText>
+    </FooterWrapper>
+  )
+}
+
 const FooterWrapper = styled.footer`
   height: 34px;
   width: 100vw;
@@ -11,15 +21,3 @@ const FooterWrapper = styled.footer`
 
 const FooterText = styled.span`
 text-align: center;`;
-
-function Footer() {
-  return (
-    <FooterWrapper>
-      <FooterText>
-        MKS Sistemas © Todos os direitos reservados
-      </FooterText>
-    </FooterWrapper>
-  )
-}
-
-export default Footer;
