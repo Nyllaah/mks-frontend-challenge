@@ -6,32 +6,44 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ProductCard from "./components/Product";
 import Cart from "./components/Cart";
+import { ProductSkeleton } from "./components/skeleton";
 
 import { IProduct } from "./Interfaces";
 import { StateType } from "./types";
 
 import getProducts from "./API";
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const [delay, setDelay] = useState(true);
+  const { showCart } = useSelector((state: StateType) => state);
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     { queryKey: ['products'], queryFn: getProducts });
 
-  const { showCart } = useSelector((state: StateType) => state);
+  useEffect(() => {
+    setTimeout(() => setDelay(false), 3000);
+  }, []);
 
-  if (isLoading) {
-    return <span>Loading...</span>
-  }
 
-  if (isError) {
-    return <span>Error: {error.message}</span>
-  }
+  if (isError) return <span>Error: {error.message}</span>;
   
   if (isSuccess) {
     return (
       <>
       <GlobalStyle />
         <Header />
-        <Main>
+        {isLoading || delay
+        ? <Main>
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+            <ProductSkeleton />
+        </Main>
+        : <Main>
           {data.products.map(({id, name, brand, description, photo, price}: IProduct) => (
             <ProductCard
             key={id}
@@ -44,6 +56,7 @@ export default function App() {
             />
           ))}
         </Main>
+        }
         <Footer />
         { showCart && <Cart showCart={ showCart }/> }
       </>
