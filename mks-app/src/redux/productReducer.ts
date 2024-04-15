@@ -1,14 +1,9 @@
-import { IProduct } from "../Interfaces";
+import { ActionType } from "../types";
 import { ADD_TO_CART, SHOW_CART } from "./actions";
 
 const INITIAL_STATE = {
   showCart: false,
   cartProducts: [],
-}
-
-type ActionType = {
-  type: string,
-  payload?: IProduct[] | IProduct,
 }
 
 const productReducer = (state = INITIAL_STATE, action: ActionType) => {
@@ -17,7 +12,9 @@ const productReducer = (state = INITIAL_STATE, action: ActionType) => {
       return {...state, showCart: !state.showCart};
     case  ADD_TO_CART:
       return {...state, cartProducts: [...state.cartProducts, action.payload]};
+    default:
+      return state;
   }
-}
+};
 
 export default productReducer;
