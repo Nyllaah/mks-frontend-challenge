@@ -7,7 +7,7 @@ export default function ProductCard(props: IProduct) {
   const formattedPrice = Math.floor(props.price);
 
   return (
-    <Wrapper key={ props.id }>
+    <Wrapper>
       <ProductWrapper>
         <ProductImg src={props.photo} alt={`image of ${props.brand} ${props.name}`}/>
         <TitleWrapper>

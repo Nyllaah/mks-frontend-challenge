@@ -1,23 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import styled, { createGlobalStyle } from "styled-components";
+import { useSelector } from "react-redux";
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ProductCard from "./components/Product";
+import Cart from "./components/Cart";
+
 import { IProduct } from "./Interfaces";
+import { StateType } from "./types";
+
 import getProducts from "./API";
-import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-  }
-`;
-
-function App() {
+export default function App() {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     { queryKey: ['products'], queryFn: getProducts });
+
+  const { showCart } = useSelector((state: StateType) => state);
 
   if (isLoading) {
     return <span>Loading...</span>
@@ -32,25 +31,46 @@ function App() {
       <>
       <GlobalStyle />
         <Header />
-        <section>
+        <Main>
           {data.products.map(({id, name, brand, description, photo, price}: IProduct) => (
             <ProductCard
-              id={id}
-              name={name}
-              brand={brand}
-              description={description}
-              photo={photo}
-              price={price}
+            key={id}
+            id={id}
+            name={name}
+            brand={brand}
+            description={description}
+            photo={photo}
+            price={price}
             />
           ))}
-        </section>
-        <section>
-          <h3>carrinho</h3>
-        </section>
+        </Main>
         <Footer />
+        { showCart && <Cart /> }
       </>
     )
   }
 }
 
-export default App;
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+`;
+
+const Main = styled.main`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90%;
+  justify-content: center;
+`;
