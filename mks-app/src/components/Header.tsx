@@ -9,6 +9,9 @@ export default function Header() {
   const { cartProducts } = useSelector((state: StateType) => state);
   const dispatch = useDispatch();
 
+  const cartNum = cartProducts.reduce((acc, curr) =>
+    curr.inCart ? acc + curr.inCart : acc + 0, 0);
+
   return (
     <HeaderWrapper>
       <TitleWrapper>
@@ -17,7 +20,7 @@ export default function Header() {
       </TitleWrapper>
       <CartBtn onClick={ () => dispatch(showCartAction()) }>
         <img src={cart} alt="cart icon"/>
-        <span>{cartProducts.length}</span>
+        <span>{cartNum}</span>
       </CartBtn>
     </HeaderWrapper>
   )
