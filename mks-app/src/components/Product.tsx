@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { IProduct } from "../Interfaces";
 
 import bagIcon from '../assets/shopping-bag.svg';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/actions";
 
 export default function ProductCard(props: IProduct) {
+  const dispatch = useDispatch();
   const formattedPrice = Math.floor(props.price);
 
   return (
@@ -16,7 +19,7 @@ export default function ProductCard(props: IProduct) {
         </TitleWrapper>
         <Description>{props.description}</Description>
       </ProductWrapper>
-      <Button>
+      <Button onClick={() => dispatch(addToCart(props))}>
         <img src={bagIcon} alt="shopping bag icon" />
         <span>Comprar</span>
       </Button>
