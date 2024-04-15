@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import { CartCardProps, StateType } from "../types";
 import { useDispatch } from "react-redux";
 import { showCart } from "../redux/actions";
+import { formatPrice } from "../helpers";
 
 export default function Cart(props: {showCart: boolean}) {
   const { cartProducts } = useSelector((state: StateType) => state);
   const dispatch = useDispatch();
 
-  const total = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
-
+  const total = cartProducts.reduce((acc, curr) => acc + Number(curr.price), 0);
   return (
     <CartWrapper style={ props.showCart ? { display: "flex" } : { display: "none" } }>
       <TitleWrapper>
@@ -32,7 +32,7 @@ export default function Cart(props: {showCart: boolean}) {
       <div>
         <TotalWrapper>
           <span>Total:</span>
-          <span>{total}</span>
+          <span>{formatPrice(total)}</span>
         </TotalWrapper>
         <SubmitBtn>Finalizar Compra</SubmitBtn>
       </div>
@@ -46,6 +46,8 @@ const ProductsWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
+  overflow: auto;
 `;
 
 const CartWrapper = styled.div`
@@ -62,6 +64,7 @@ const CartWrapper = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   color: white;
+  box-shadow: -5px 0px 6px 0px #00000021;
 `;
 
 const CloseBtn = styled.button`
@@ -78,12 +81,14 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  box-shadow: -5px 0px 6px 0px #00000021;
 `;
 
 const TotalWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  box-shadow: -5px 0px 6px 0px #00000021;
 `;
 
 const SubmitBtn = styled.button`

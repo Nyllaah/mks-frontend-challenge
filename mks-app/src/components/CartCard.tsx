@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { CartCardProps } from "../types";
+import { formatPrice } from "../helpers";
 
-export default function CartCard(props: CartCardProps) {
+export default function CartCard(props: CartCardProps) {  
   return (
     <Wrapper>
       <CloseBtn>X</CloseBtn>
@@ -15,7 +16,7 @@ export default function CartCard(props: CartCardProps) {
           <Button>+</Button>
         </CounterWrapper>
       </QtdWrapper>
-      <span>{props.price}</span>
+      <span>{formatPrice(props.price)}</span>
     </Wrapper>
   )
 }
@@ -32,10 +33,11 @@ const Wrapper = styled.div`
   font-size: 1rem;
   font-weight: 400;
   position: relative;
-  padding: 2rem;
+  padding: 0.5rem 1.3rem 0.5rem 0.5rem;
 `;
+
 const Title = styled.p`
-  width: 20%,
+  width: 30%;
 `;
 
 const CloseBtn = styled.button`
@@ -58,6 +60,9 @@ const ProductImg = styled.img`
 
 const QtdWrapper = styled.div`
   font-size: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `;
 
 const CounterWrapper = styled.div`
