@@ -28,10 +28,14 @@ export default function ProductCard(props: IProduct) {
 }
 
 const Wrapper = styled.div`
-  width: 217px;
+  width: 218px;
+  heigth: 285px;
   border-radius: 10px;
   box-shadow: 0px 2px 8px 0px #00000022;
   margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const ProductWrapper = styled.div`

@@ -71,6 +71,6 @@ const GlobalStyle = createGlobalStyle`
 const Main = styled.main`
   display: flex;
   flex-wrap: wrap;
-  max-width: 90%;
+  max-width: 80%;
   justify-content: center;
 `;
