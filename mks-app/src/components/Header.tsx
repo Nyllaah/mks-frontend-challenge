@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showCart as showCartAction } from "../redux/actions";
+
 import cart from '../assets/cart.svg';
+import { StateType } from "../types";
 
 export default function Header() {
+  const { cartProducts } = useSelector((state: StateType) => state);
   const dispatch = useDispatch();
 
   return (
@@ -14,7 +17,7 @@ export default function Header() {
       </TitleWrapper>
       <CartBtn onClick={ () => dispatch(showCartAction()) }>
         <img src={cart} alt="cart icon"/>
-        <span>0</span>
+        <span>{cartProducts.length}</span>
       </CartBtn>
     </HeaderWrapper>
   )

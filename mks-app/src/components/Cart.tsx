@@ -17,16 +17,18 @@ export default function Cart(props: {showCart: boolean}) {
         <h3>Carrinho de Compras</h3>
         <CloseBtn onClick={ () => dispatch(showCart()) }>X</CloseBtn>
       </TitleWrapper>
-      {cartProducts.map(({id, name, brand, photo, price}: CartCardProps) => (
-        <CartCard
+      <ProductsWrapper>
+        {cartProducts.map(({id, name, brand, photo, price}: CartCardProps) => (
+          <CartCard
           key={id}
           id={id}
           name={name}
           brand={brand}
           photo={photo}
           price={price}
-        />
-      ))}
+          />
+        ))}
+      </ProductsWrapper>
       <div>
         <TotalWrapper>
           <span>Total:</span>
@@ -37,6 +39,14 @@ export default function Cart(props: {showCart: boolean}) {
     </CartWrapper>
   )
 }
+
+
+const ProductsWrapper = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const CartWrapper = styled.div`
   width: 486px;
