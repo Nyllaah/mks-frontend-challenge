@@ -1,17 +1,18 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
+import { showCart as showCartAction } from "../redux/actions";
 import cart from '../assets/cart.svg';
 
 export default function Header() {
-  const showCart = () => {};
+  const dispatch = useDispatch();
+
   return (
     <HeaderWrapper>
       <TitleWrapper>
         <Title>MSK</Title>
         <Subtitle>Sistemas</Subtitle>
       </TitleWrapper>
-      <CartBtn onClick={ showCart }>
+      <CartBtn onClick={ () => dispatch(showCartAction()) }>
         <img src={cart} alt="cart icon"/>
         <span>0</span>
       </CartBtn>

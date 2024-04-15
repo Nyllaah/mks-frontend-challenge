@@ -45,7 +45,7 @@ export default function App() {
           ))}
         </Main>
         <Footer />
-        { showCart && <Cart /> }
+        { showCart && <Cart showCart={ showCart }/> }
       </>
     )
   }
