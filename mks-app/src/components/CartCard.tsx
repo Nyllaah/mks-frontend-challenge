@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { removeFromCart } from "../redux/actions";
+import { addToCart, decrementQuantity, removeFromCart } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
 import { formatPrice } from "../helpers";
@@ -15,9 +15,9 @@ export default function CartCard(props: IProduct) {
       <QtdWrapper>
         <span>Qtd</span>
         <CounterWrapper>
-          <Button>-</Button>
+          <Button onClick={() => dispatch(decrementQuantity(props.id))}>-</Button>
           <Counter>{!props.inCart ? 0 : props.inCart}</Counter>
-          <Button>+</Button>
+          <Button onClick={() => dispatch(addToCart(props))}>+</Button>
         </CounterWrapper>
       </QtdWrapper>
       <span>{formatPrice(props.price)}</span>

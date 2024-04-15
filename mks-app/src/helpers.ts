@@ -16,3 +16,18 @@ export const incrementQuantity = (cart: IProduct[], product: IProduct) => {
     : prod
 )};
 
+export const decrementQuantity = (cart: IProduct[], id: number) => {
+  const updatedCart:IProduct[] = [];
+  cart.forEach((prod) => {
+    if (prod.id === id) {
+      if (prod.inCart && prod.inCart > 1) {
+        updatedCart.push({...prod, inCart: prod.inCart - 1})
+      }
+    } else {
+      updatedCart.push(prod);
+    }}
+  )
+  return updatedCart;
+};
+
+
