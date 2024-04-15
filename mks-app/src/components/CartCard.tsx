@@ -1,9 +1,11 @@
-export default function CartCard() {
+import { CartCardProps } from "../types";
+
+export default function CartCard(props: CartCardProps) {
   return (
     <>
       <button>x</button>
-      <img src="" alt="" />
-      <span>title</span>
+      <img src={props.photo} alt={`image of ${props.brand} ${props.name}`} />
+      <span>{`${props.brand} ${props.name}`}</span>
       <div>
         <span>Qtd</span>
         <div>
@@ -12,7 +14,7 @@ export default function CartCard() {
           <button>+</button>
         </div>
       </div>
-      <span>price</span>
+      <span>{props.price}</span>
     </>
   )
 }

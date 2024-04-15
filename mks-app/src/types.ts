@@ -9,3 +9,11 @@ export type StateType = {
   showCart: boolean,
   cartProducts: IProduct[],
 }
+
+export type CartCardProps = {
+  id: number,
+  name: string,
+  brand: string,
+  photo: string,
+  price: number,
+}
