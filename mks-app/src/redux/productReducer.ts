@@ -8,21 +8,24 @@ const INITIAL_STATE = {
   cartProducts: [],
 }
 
-const productReducer = (state: StateType = INITIAL_STATE, action) => {
+const productReducer = (state: StateType = INITIAL_STATE, action: ActionType) => {
   switch(action.type) {
     case SHOW_CART:
       return {...state, showCart: !state.showCart};
     case ADD_TO_CART:
-      return isInCart(state.cartProducts, action.payload.id)
-      ? {...state,cartProducts: incrementQuantity(state.cartProducts, action.payload)}
-      : {...state, cartProducts: [...state.cartProducts, {...action.payload, inCart: 1}]}
+      if (typeof action.payload === 'object' && 'id' in action.payload) {
+        return isInCart(state.cartProducts, action.payload.id)
+        ? {...state,cartProducts: incrementQuantity(state.cartProducts, action.payload)}
+        : {...state, cartProducts: [...state.cartProducts, {...action.payload, inCart: 1}]}
+      }
+      return state;
     case REMOVE_FROM_CART:
       return {...state, cartProducts: state.cartProducts.filter(
         (product: IProduct) => product.id !== action.payload
       )};
     case DECREMENT_QUANTITY:
       return {...state,
-        cartProducts: decrementQuantity(state.cartProducts, action.payload),
+        cartProducts: decrementQuantity(state.cartProducts, action.payload as number),
       }
     default:
       return state;
