@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import CartCard from "./CartCard";
 import { useSelector } from "react-redux";
-import { CartCardProps, StateType } from "../types";
+import { StateType } from "../types";
 import { useDispatch } from "react-redux";
 import { showCart } from "../redux/actions";
 import { formatPrice } from "../helpers";
+import { IProduct } from "../Interfaces";
 
 export default function Cart(props: {showCart: boolean}) {
   const { cartProducts } = useSelector((state: StateType) => state);
@@ -18,7 +19,7 @@ export default function Cart(props: {showCart: boolean}) {
         <CloseBtn onClick={ () => dispatch(showCart()) }>X</CloseBtn>
       </TitleWrapper>
       <ProductsWrapper>
-        {cartProducts.map(({id, name, brand, photo, price}: CartCardProps) => (
+        {cartProducts.map(({id, name, brand, photo, price, inCart}: IProduct) => (
           <CartCard
           key={id}
           id={id}
@@ -26,6 +27,7 @@ export default function Cart(props: {showCart: boolean}) {
           brand={brand}
           photo={photo}
           price={price}
+          inCart={inCart ? inCart : 0}
           />
         ))}
       </ProductsWrapper>

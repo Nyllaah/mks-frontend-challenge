@@ -1,18 +1,22 @@
 import styled from "styled-components";
-import { CartCardProps } from "../types";
-import { formatPrice } from "../helpers";
+import { removeFromCart } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
-export default function CartCard(props: CartCardProps) {  
+import { formatPrice } from "../helpers";
+import { IProduct } from "../Interfaces";
+
+export default function CartCard(props: IProduct) {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
-      <CloseBtn>X</CloseBtn>
+      <CloseBtn onClick={() => dispatch(removeFromCart(props.id))}>X</CloseBtn>
       <ProductImg src={props.photo} alt={`image of ${props.brand} ${props.name}`} />
       <Title>{`${props.brand} ${props.name}`}</Title>
       <QtdWrapper>
         <span>Qtd</span>
         <CounterWrapper>
           <Button>-</Button>
-          <Counter>0</Counter>
+          <Counter>{!props.inCart ? 0 : props.inCart}</Counter>
           <Button>+</Button>
         </CounterWrapper>
       </QtdWrapper>
@@ -34,6 +38,7 @@ const Wrapper = styled.div`
   font-weight: 400;
   position: relative;
   padding: 0.5rem 1.3rem 0.5rem 0.5rem;
+  margin-top: 0.5rem;
 `;
 
 const Title = styled.p`
@@ -86,3 +91,4 @@ const Counter = styled.span`
   border-left: 1px solid #BFBFBF;
   border-right: 1px solid #BFBFBF;
 `;
+
