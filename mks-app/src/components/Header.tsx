@@ -1,14 +1,18 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
+import cart from '../assets/cart.svg';
+
 export default function Header() {
+  const showCart = () => {};
   return (
     <HeaderWrapper>
       <TitleWrapper>
         <Title>MSK</Title>
         <Subtitle>Sistemas</Subtitle>
       </TitleWrapper>
-      <CartBtn onClick={() => {}}>
-        <img src="../../public/cart.svg" alt="cart icon"/>
+      <CartBtn onClick={ showCart }>
+        <img src={cart} alt="cart icon"/>
         <span>0</span>
       </CartBtn>
     </HeaderWrapper>

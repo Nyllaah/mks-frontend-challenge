@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { IProduct } from "../Interfaces";
 
+import bagIcon from '../assets/shopping-bag.svg';
+
 export default function ProductCard(props: IProduct) {
   const formattedPrice = Math.floor(props.price);
 
@@ -15,7 +17,7 @@ export default function ProductCard(props: IProduct) {
         <Description>{props.description}</Description>
       </ProductWrapper>
       <Button>
-        <img src="../../public/shopping-bag.svg" alt="shopping bag icon" />
+        <img src={bagIcon} alt="shopping bag icon" />
         <span>Comprar</span>
       </Button>
     </Wrapper>
