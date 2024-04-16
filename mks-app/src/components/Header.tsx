@@ -13,7 +13,7 @@ export default function Header() {
     curr.inCart ? acc + curr.inCart : acc + 0, 0);
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper data-testid='header-wrapper'>
       <TitleWrapper>
         <Title>MSK</Title>
         <Subtitle>Sistemas</Subtitle>

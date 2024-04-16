@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export const ProductSkeleton = () => {
   return (
-    <motion.div
+    <motion.div data-testid='product-skeleton'
       initial={{
         opacity: 0.5,
         backgroundColor: '#EEEEEE',

@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [delay, setDelay] = useState(true);
   const { showCart } = useSelector((state: StateType) => state);
+  
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     { queryKey: ['products'], queryFn: getProducts });
 
