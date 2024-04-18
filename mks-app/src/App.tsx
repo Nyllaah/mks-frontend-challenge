@@ -24,7 +24,6 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => setDelay(false), 3000);
   }, []);
-
   if (isError) return <span>Error: {error.message}</span>;
   
   if (isSuccess) {
