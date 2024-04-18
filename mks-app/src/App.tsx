@@ -25,7 +25,6 @@ export default function App() {
     setTimeout(() => setDelay(false), 3000);
   }, []);
 
-
   if (isError) return <span>Error: {error.message}</span>;
   
   if (isSuccess) {
